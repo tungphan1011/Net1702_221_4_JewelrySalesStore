@@ -23,6 +23,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build PRN221/Project/NET1702_PRN221_JewelrySalesStoreDB/Source/Net1702_221_4_JewelrySalesStore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test PRN221/Project/NET1702_PRN221_JewelrySalesStoreDB/Source/Net1702_221_4_JewelrySalesStore
