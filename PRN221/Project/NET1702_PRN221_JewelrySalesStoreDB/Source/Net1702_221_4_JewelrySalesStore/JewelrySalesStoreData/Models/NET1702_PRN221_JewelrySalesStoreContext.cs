@@ -8,6 +8,10 @@ namespace JewelrySalesStoreData.Models;
 
 public partial class NET1702_PRN221_JewelrySalesStoreContext : DbContext
 {
+    public NET1702_PRN221_JewelrySalesStoreContext()
+    {
+    }
+
     public NET1702_PRN221_JewelrySalesStoreContext(DbContextOptions<NET1702_PRN221_JewelrySalesStoreContext> options)
         : base(options)
     {
