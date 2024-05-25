@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreData", "JewelrySalesStoreData\JewelrySalesStoreData.csproj", "{1537EAEF-B972-4C1F-9AB6-E1DFF3F3E1EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSStore.Data", "JewelrySalesStoreData\JSStore.Data.csproj", "{1537EAEF-B972-4C1F-9AB6-E1DFF3F3E1EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JewelrySalesStoreBusiness", "JewelrySalesStoreBusiness\JewelrySalesStoreBusiness.csproj", "{FE7CC470-EB92-4B97-8578-6A0B379ABB96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSStore.Business", "JewelrySalesStoreBusiness\JSStore.Business.csproj", "{FE7CC470-EB92-4B97-8578-6A0B379ABB96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JewelrySalesStoreWebApp", "JewelrySalesStoreWebApp\JewelrySalesStoreWebApp.csproj", "{F38120C2-68A9-463D-A077-323AFD9B7C09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSStore.WebApp", "JewelrySalesStoreWebApp\JSStore.WebApp.csproj", "{F38120C2-68A9-463D-A077-323AFD9B7C09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JewelrySalesStoreRazorWebApp", "JewelrySalesStoreRazorWebApp\JewelrySalesStoreRazorWebApp.csproj", "{D7F22080-B14F-48C0-9AFF-2FD4F5707417}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSStore.RazorWebApp", "JewelrySalesStoreRazorWebApp\JSStore.RazorWebApp.csproj", "{D7F22080-B14F-48C0-9AFF-2FD4F5707417}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
