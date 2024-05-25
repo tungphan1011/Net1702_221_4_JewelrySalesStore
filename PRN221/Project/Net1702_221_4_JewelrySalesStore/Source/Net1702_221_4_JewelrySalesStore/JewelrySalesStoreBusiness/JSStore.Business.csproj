@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JewelrySalesStore.Common\JewelrySalesStore.Common.csproj" />
-    <ProjectReference Include="..\JewelrySalesStoreData\JewelrySalesStoreData.csproj" />
+    <ProjectReference Include="..\JewelrySalesStore.Common\JSStore.Common.csproj" />
+    <ProjectReference Include="..\JewelrySalesStoreData\JSStore.Data.csproj" />
   </ItemGroup>
 
 </Project>
