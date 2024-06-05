@@ -1,7 +1,8 @@
 ﻿using JewelrySalesStore.Common;
 using JewelrySalesStoreBusiness.Base;
-using JewelrySalesStoreData.Models;
 using JewelrySalesStoreData;
+using JewelrySalesStoreData.DAO;
+using JewelrySalesStoreData.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,23 +11,21 @@ using System.Threading.Tasks;
 
 namespace JewelrySalesStoreBusiness
 {
-    public interface IProductBusiness
+    public interface IOrderDetailBusiness
     {
         Task<IBusinessResult> GetAll();
         Task<IBusinessResult> GetById(string code);
-        Task<IBusinessResult> Save(Product product);
-        Task<IBusinessResult> Update(Product product);
+        Task<IBusinessResult> Save(OrderDetail orderDetail);
+        Task<IBusinessResult> Update(OrderDetail orderDetail);
         Task<IBusinessResult> DeleteById(string code);
     }
-    public class ProductBusiness : IProductBusiness
+
+    public class OrderDetailBusiness : IOrderDetailBusiness
     {
-        //private readonly ProductDAO _DAO;        
-        //private readonly ProductRepository _ProductRepository;
         private readonly UnitOfWork _unitOfWork;
 
-        public ProductBusiness()
+        public OrderDetailBusiness()
         {
-            //_ProductRepository ??= new ProductRepository();            
             _unitOfWork ??= new UnitOfWork();
         }
 
@@ -34,21 +33,15 @@ namespace JewelrySalesStoreBusiness
         {
             try
             {
-                #region Business rule
-                #endregion
+                var orderDetails = await _unitOfWork.OrderDetailRepository.GetAllAsync();
 
-                //var currencies = _DAO.GetAll();
-                //var currencies = await _currencyRepository.GetAllAsync();
-                var currencies = await _unitOfWork.ProductRepository.GetAllAsync();
-
-
-                if (currencies == null)
+                if (orderDetails == null)
                 {
                     return new BusinessResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA__MSG);
                 }
                 else
                 {
-                    return new BusinessResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, currencies);
+                    return new BusinessResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, orderDetails);
                 }
             }
             catch (Exception ex)
@@ -61,19 +54,15 @@ namespace JewelrySalesStoreBusiness
         {
             try
             {
-                #region Business rule
-                #endregion
+                var orderDetail = await _unitOfWork.OrderDetailRepository.GetByIdAsync(code);
 
-                //var  Product = await _ ProductRepository.GetByIdAsync(code);
-                var Product = await _unitOfWork.ProductRepository.GetByIdAsync(code);
-
-                if (Product == null)
+                if (orderDetail == null)
                 {
                     return new BusinessResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA__MSG);
                 }
                 else
                 {
-                    return new BusinessResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, Product);
+                    return new BusinessResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, orderDetail);
                 }
             }
             catch (Exception ex)
@@ -82,12 +71,11 @@ namespace JewelrySalesStoreBusiness
             }
         }
 
-        public async Task<IBusinessResult> Save(Product Product)
+        public async Task<IBusinessResult> Save(OrderDetail orderDetail)
         {
             try
             {
-                //int result = await _currencyRepository.CreateAsync( Product);
-                int result = await _unitOfWork.ProductRepository.CreateAsync(Product);
+                int result = await _unitOfWork.OrderDetailRepository.CreateAsync(orderDetail);
                 if (result > 0)
                 {
                     return new BusinessResult(Const.SUCCESS_CREATE_CODE, Const.SUCCESS_CREATE_MSG);
@@ -103,12 +91,11 @@ namespace JewelrySalesStoreBusiness
             }
         }
 
-        public async Task<IBusinessResult> Update(Product Product)
+        public async Task<IBusinessResult> Update(OrderDetail orderDetail)
         {
             try
             {
-                //int result = await _currencyRepository.UpdateAsync( Product);
-                int result = await _unitOfWork.ProductRepository.UpdateAsync(Product);
+                int result = await _unitOfWork.OrderDetailRepository.UpdateAsync(orderDetail);
 
                 if (result > 0)
                 {
@@ -121,7 +108,7 @@ namespace JewelrySalesStoreBusiness
             }
             catch (Exception ex)
             {
-                return new BusinessResult(-4, ex.ToString());
+                return new BusinessResult(Const.ERROR_EXCEPTION, ex.ToString());
             }
         }
 
@@ -129,12 +116,10 @@ namespace JewelrySalesStoreBusiness
         {
             try
             {
-                //var  Product = await _currencyRepository.GetByIdAsync(code);
-                var Product = await _unitOfWork.ProductRepository.GetByIdAsync(code);
-                if (Product != null)
+                var orderDetail = await _unitOfWork.OrderDetailRepository.GetByIdAsync(code);
+                if (orderDetail != null)
                 {
-                    //var result = await _currencyRepository.RemoveAsync( Product);
-                    var result = await _unitOfWork.ProductRepository.RemoveAsync(Product);
+                    var result = await _unitOfWork.OrderDetailRepository.RemoveAsync(orderDetail);
                     if (result)
                     {
                         return new BusinessResult(Const.SUCCESS_DELETE_CODE, Const.SUCCESS_DELETE_MSG);
@@ -151,7 +136,7 @@ namespace JewelrySalesStoreBusiness
             }
             catch (Exception ex)
             {
-                return new BusinessResult(-4, ex.ToString());
+                return new BusinessResult(Const.ERROR_EXCEPTION, ex.ToString());
             }
         }
     }

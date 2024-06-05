@@ -6,11 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JewelrySalesStoreData.Repository
+namespace JewelrySalesStoreData.DAO
 {
-    public class CategoryRepository : GenericRepository<Category>
+    public class PromotionDAO : GenericRepository<Promotion>
     {
-        public CategoryRepository() { 
-        }
     }
 }

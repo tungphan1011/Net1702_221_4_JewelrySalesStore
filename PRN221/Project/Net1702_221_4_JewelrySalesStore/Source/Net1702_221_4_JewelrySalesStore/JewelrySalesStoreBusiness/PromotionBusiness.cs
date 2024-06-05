@@ -11,23 +11,21 @@ using System.Threading.Tasks;
 
 namespace JewelrySalesStoreBusiness
 {
-    public interface ICategoryBusiness
+    public interface IPromotionBusiness
     {
         Task<IBusinessResult> GetAll();
-        Task<IBusinessResult> GetById(string code);
-        Task<IBusinessResult> Save(Category category);
-        Task<IBusinessResult> Update(Category category);
-        Task<IBusinessResult> DeleteById(string code);
+        Task<IBusinessResult> GetById(Guid code);
+        Task<IBusinessResult> Save(Promotion promotion);
+        Task<IBusinessResult> Update(Promotion promotion);
+        Task<IBusinessResult> DeleteById(Guid code);
     }
-    public class CategoryBusiness : ICategoryBusiness
+
+    public class PromotionBusiness : IPromotionBusiness
     {
-        //private readonly CategoryDAO _DAO;        
-        //private readonly CategoryRepository _CategoryRepository;
         private readonly UnitOfWork _unitOfWork;
 
-        public CategoryBusiness()
+        public PromotionBusiness()
         {
-            //_CategoryRepository ??= new CategoryRepository();            
             _unitOfWork ??= new UnitOfWork();
         }
 
@@ -35,21 +33,15 @@ namespace JewelrySalesStoreBusiness
         {
             try
             {
-                #region Business rule
-                #endregion
+                var promotions = await _unitOfWork.PromotionRepository.GetAllAsync();
 
-                //var currencies = _DAO.GetAll();
-                //var currencies = await _currencyRepository.GetAllAsync();
-                var currencies = await _unitOfWork.CategoryRepository.GetAllAsync();
-
-
-                if (currencies == null)
+                if (promotions == null)
                 {
                     return new BusinessResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA__MSG);
                 }
                 else
                 {
-                    return new BusinessResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, currencies);
+                    return new BusinessResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, promotions);
                 }
             }
             catch (Exception ex)
@@ -58,23 +50,19 @@ namespace JewelrySalesStoreBusiness
             }
         }
 
-        public async Task<IBusinessResult> GetById(string code)
+        public async Task<IBusinessResult> GetById(Guid code)
         {
             try
             {
-                #region Business rule
-                #endregion
+                var promotion = await _unitOfWork.PromotionRepository.GetByIdAsync(code);
 
-                //var  Category = await _ CategoryRepository.GetByIdAsync(code);
-                var Category = await _unitOfWork.CategoryRepository.GetByIdAsync(code);
-
-                if (Category == null)
+                if (promotion == null)
                 {
                     return new BusinessResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA__MSG);
                 }
                 else
                 {
-                    return new BusinessResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, Category);
+                    return new BusinessResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, promotion);
                 }
             }
             catch (Exception ex)
@@ -83,12 +71,11 @@ namespace JewelrySalesStoreBusiness
             }
         }
 
-        public async Task<IBusinessResult> Save(Category Category)
+        public async Task<IBusinessResult> Save(Promotion promotion)
         {
             try
             {
-                //int result = await _currencyRepository.CreateAsync( Category);
-                int result = await _unitOfWork.CategoryRepository.CreateAsync(Category);
+                int result = await _unitOfWork.PromotionRepository.CreateAsync(promotion);
                 if (result > 0)
                 {
                     return new BusinessResult(Const.SUCCESS_CREATE_CODE, Const.SUCCESS_CREATE_MSG);
@@ -104,12 +91,11 @@ namespace JewelrySalesStoreBusiness
             }
         }
 
-        public async Task<IBusinessResult> Update(Category Category)
+        public async Task<IBusinessResult> Update(Promotion promotion)
         {
             try
             {
-                //int result = await _currencyRepository.UpdateAsync( Category);
-                int result = await _unitOfWork.CategoryRepository.UpdateAsync(Category);
+                int result = await _unitOfWork.PromotionRepository.UpdateAsync(promotion);
 
                 if (result > 0)
                 {
@@ -122,20 +108,18 @@ namespace JewelrySalesStoreBusiness
             }
             catch (Exception ex)
             {
-                return new BusinessResult(-4, ex.ToString());
+                return new BusinessResult(Const.ERROR_EXCEPTION, ex.ToString());
             }
         }
 
-        public async Task<IBusinessResult> DeleteById(string code)
+        public async Task<IBusinessResult> DeleteById(Guid code)
         {
             try
             {
-                //var  Category = await _currencyRepository.GetByIdAsync(code);
-                var Category = await _unitOfWork.CategoryRepository.GetByIdAsync(code);
-                if (Category != null)
+                var promotion = await _unitOfWork.PromotionRepository.GetByIdAsync(code);
+                if (promotion != null)
                 {
-                    //var result = await _currencyRepository.RemoveAsync( Category);
-                    var result = await _unitOfWork.CategoryRepository.RemoveAsync(Category);
+                    var result = await _unitOfWork.PromotionRepository.RemoveAsync(promotion);
                     if (result)
                     {
                         return new BusinessResult(Const.SUCCESS_DELETE_CODE, Const.SUCCESS_DELETE_MSG);
@@ -152,10 +136,8 @@ namespace JewelrySalesStoreBusiness
             }
             catch (Exception ex)
             {
-                return new BusinessResult(-4, ex.ToString());
+                return new BusinessResult(Const.ERROR_EXCEPTION, ex.ToString());
             }
         }
     }
 }
-
-

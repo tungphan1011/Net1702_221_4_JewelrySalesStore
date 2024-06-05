@@ -1,4 +1,5 @@
-﻿using JewelrySalesStoreData.Repository;
+﻿using JewelrySalesStoreData.Models;
+using JewelrySalesStoreData.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,34 +10,38 @@ namespace JewelrySalesStoreData
 {
     public class UnitOfWork
     {
-        private CategoryRepository _category;
-        private ProductRepository _product;
+        private Net17022214JewelrySalesStoreContext _unitOfWorkContext;
+
         private CompanyRepository _company;
+        private OrderDetailRepository _detail;
+        private PromotionRepository _promotion;
 
-        public UnitOfWork() { 
-        }
-
-        public CategoryRepository CategoryRepository
+        public UnitOfWork()
         {
-            get
-            {
-                return _category ??= new Repository.CategoryRepository();
-            }
-        }
-
-        public ProductRepository ProductRepository
-        {
-            get
-            {
-                return _product ??= new Repository.ProductRepository();
-            }
+            _unitOfWorkContext ??= new Net17022214JewelrySalesStoreContext();
         }
 
         public CompanyRepository CompanyRepository
         {
             get
             {
-                return _company ??= new Repository.CompanyRepository();
+                return _company ??= new Repository.CompanyRepository(_unitOfWorkContext);
+            }
+        }
+
+        public OrderDetailRepository OrderDetailRepository
+        {
+            get
+            {
+                return _detail ??= new Repository.OrderDetailRepository(_unitOfWorkContext);
+            }
+        }
+
+        public PromotionRepository PromotionRepository
+        {
+            get
+            {
+                return _promotion ??= new Repository.PromotionRepository();
             }
         }
     }

@@ -14,10 +14,10 @@ namespace JewelrySalesStoreBusiness
     public interface ICompanyBusiness
     {
         Task<IBusinessResult> GetAll();
-        Task<IBusinessResult> GetById(string code);
+        Task<IBusinessResult> GetById(Guid code);
         Task<IBusinessResult> Save(Company company);
         Task<IBusinessResult> Update(Company company);
-        Task<IBusinessResult> DeleteById(string code);
+        Task<IBusinessResult> DeleteById(Guid code);
     }
     public class CompanyBusiness : ICompanyBusiness
     {
@@ -58,7 +58,7 @@ namespace JewelrySalesStoreBusiness
             }
         }
 
-        public async Task<IBusinessResult> GetById(string code)
+        public async Task<IBusinessResult> GetById(Guid code)
         {
             try
             {
@@ -122,11 +122,11 @@ namespace JewelrySalesStoreBusiness
             }
             catch (Exception ex)
             {
-                return new BusinessResult(-4, ex.ToString());
+                return new BusinessResult(Const.ERROR_EXCEPTION, ex.ToString());
             }
         }
 
-        public async Task<IBusinessResult> DeleteById(string code)
+        public async Task<IBusinessResult> DeleteById(Guid code)
         {
             try
             {

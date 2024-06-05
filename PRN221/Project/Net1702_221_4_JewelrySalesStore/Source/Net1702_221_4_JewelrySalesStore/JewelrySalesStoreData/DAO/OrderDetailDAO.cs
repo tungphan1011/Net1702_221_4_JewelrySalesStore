@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JewelrySalesStoreData.DAO
 {
-    public class CategoryDAO : GenericRepository<Category>
+    public class OrderDetailDAO : GenericRepository<OrderDetail>
     {
     }
 }

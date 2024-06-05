@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace JewelrySalesStoreData.Repository
 {
-    public class ProductRepository : GenericRepository<Product>
+    public class PromotionRepository : GenericRepository<Promotion>
     {
-        public ProductRepository()
-        {
+        public PromotionRepository() { 
         }
+        public PromotionRepository(Net17022214JewelrySalesStoreContext context) : base(context) => _context = context;
+
     }
 }

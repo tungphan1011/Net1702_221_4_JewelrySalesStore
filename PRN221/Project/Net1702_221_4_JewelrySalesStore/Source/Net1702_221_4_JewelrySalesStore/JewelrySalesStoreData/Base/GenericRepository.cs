@@ -10,14 +10,50 @@ namespace JewelrySalesStoreData.Base
 {
     public class GenericRepository<T> where T : class
     {
-        protected readonly NET1702_221_4_JewelrySalesStoreContext _context;
+        protected Net17022214JewelrySalesStoreContext _context;
         protected readonly DbSet<T> _dbSet;
 
         public GenericRepository()
         {
-            _context = new NET1702_221_4_JewelrySalesStoreContext();
+            _context = new Net17022214JewelrySalesStoreContext();
             _dbSet = _context.Set<T>();
         }
+
+        #region Separating asign entity and save operators
+
+        public GenericRepository(Net17022214JewelrySalesStoreContext context)
+        {
+            _context = context;
+            _dbSet = _context.Set<T>();
+        }
+
+        public void PrepareCreate(T entity)
+        {
+            _dbSet.Add(entity);
+        }
+
+        public void PrepareUpdate(T entity)
+        {
+            var tracker = _context.Attach(entity);
+            tracker.State = EntityState.Modified;
+        }
+
+        public void PrepareRemove(T entity)
+        {
+            _dbSet.Remove(entity);
+        }
+
+        public int Save()
+        {
+            return _context.SaveChanges();
+        }
+
+        public async Task<int> SaveAsync()
+        {
+            return await _context.SaveChangesAsync();
+        }
+
+        #endregion Separating asign entity and save operators
 
         public List<T> GetAll()
         {
@@ -72,7 +108,7 @@ namespace JewelrySalesStoreData.Base
             return _dbSet.Find(id);
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(Guid id)
         {
             return await _dbSet.FindAsync(id);
         }

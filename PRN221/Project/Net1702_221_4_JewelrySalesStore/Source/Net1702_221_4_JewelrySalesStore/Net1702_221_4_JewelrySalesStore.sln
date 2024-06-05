@@ -7,13 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSStore.Data", "JewelrySale
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSStore.Business", "JewelrySalesStoreBusiness\JSStore.Business.csproj", "{4C761039-AF91-4197-B490-DC403FE0CAC6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSStore.WebApp", "JewelrySalesStoreWebApp\JSStore.WebApp.csproj", "{347902B7-A5B1-48D8-82E2-55DDF67FD84F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSStore.MVCWebApp", "JewelrySalesStoreMVCWebApp\JSStore.MVCWebApp.csproj", "{347902B7-A5B1-48D8-82E2-55DDF67FD84F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSStore.RazorWebApp", "JewelrySalesStoreRazorWebApp\JSStore.RazorWebApp.csproj", "{31C3EB36-2121-4305-ADC9-007E94F13776}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSStore.ConsoleApp", "JewelrySalesStore.ConsoleApp\JSStore.ConsoleApp.csproj", "{CCCB397B-0804-4E84-8389-AA119D36F2C5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSStore.Common", "JewelrySalesStore.Common\JSStore.Common.csproj", "{E08F13BA-A9D3-4F6A-96E0-5B1C824E4DFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSStore.WPFApp", "JSStore.WPFApp\JSStore.WPFApp.csproj", "{87857E16-A321-4E31-AC83-C91D8D64A8F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{E08F13BA-A9D3-4F6A-96E0-5B1C824E4DFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E08F13BA-A9D3-4F6A-96E0-5B1C824E4DFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E08F13BA-A9D3-4F6A-96E0-5B1C824E4DFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87857E16-A321-4E31-AC83-C91D8D64A8F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87857E16-A321-4E31-AC83-C91D8D64A8F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87857E16-A321-4E31-AC83-C91D8D64A8F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87857E16-A321-4E31-AC83-C91D8D64A8F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
