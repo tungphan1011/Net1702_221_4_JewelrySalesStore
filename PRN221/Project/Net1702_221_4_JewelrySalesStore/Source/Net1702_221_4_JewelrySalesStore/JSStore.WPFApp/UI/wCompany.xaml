@@ -37,7 +37,7 @@
 
                     <!-- Desciption -->
                     <Label Grid.Column="2" Grid.Row="1" Content="Description" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
-                    <TextBox Grid.Column="3" Grid.Row="1" x:Name="Description" Height="25" Text="{Binding Path=Company.Description, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Grid.Column="3" Grid.Row="1" x:Name="txtDescription" Height="25" Text="{Binding Path=Company.Description, Mode=TwoWay}" Margin="5" Width="200" HorizontalAlignment="Left"/>
 
                 </Grid>
             </GroupBox>
